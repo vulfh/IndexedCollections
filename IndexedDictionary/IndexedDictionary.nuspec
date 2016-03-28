@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>IndexedCollections</title>
+    <authors>Vulf Lahman</authors>
+    <owners>Vulf Lahman</owners>
+    <licenseUrl>http://www.gnu.org/licenses/licenses.html</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Release Candidate</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Indexed Collections Dictionary</tags>
+  </metadata>
+</package>
