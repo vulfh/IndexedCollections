@@ -134,7 +134,7 @@ namespace IndexedCollections
         /// <param name="item"> Item to add to indexed dictionary</param>
         public void Add(T item)
         {
-            if (item == null)
+            if (item != null)
             {
                 object keyValue = _keyProperty.GetValue(item);
                 int keyValueHashCode = keyValue.GetHashCode();
@@ -151,7 +151,7 @@ namespace IndexedCollections
             }
             else
             {
-                throw new Exception("The value");
+                throw new Exception("The value you are trying to add is null ! Please assign value first !");
             }
         }
         #endregion
