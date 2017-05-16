@@ -42,6 +42,8 @@
     <Compile Include="Attributes\Index.cs" />
     <Compile Include="Attributes\Key.cs" />
     <Compile Include="Exceptions\DuplicateUniqueIndexException.cs" />
+    <Compile Include="Exceptions\IndexShouldBeImmutableException.cs" />
+    <Compile Include="Exceptions\KeyIsMutableException.cs" />
     <Compile Include="IndexedDictionary.cs" />
     <Compile Include="Exceptions\Constants.cs" />
     <Compile Include="Exceptions\DuplicateKeyException.cs" />

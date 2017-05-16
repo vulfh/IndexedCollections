@@ -61,6 +61,109 @@ namespace IndexDictionaryUnitTests
 
         #endregion
 
+        #region TestImmutableCanBeSet
+        [TestMethod]
+        public void TestImmutableCanBeSetNegative()
+        {
+            Exception resultException = null;
+
+            //Arrange
+            try
+            {
+                //Test
+                IndexedDictionary<int, ImmutableKeyWrong> dictionary = new IndexedDictionary<int, ImmutableKeyWrong>();
+            }
+            catch(Exception ex)
+            {
+                resultException = ex;
+            }
+
+            //assert
+            Assert.IsInstanceOfType(resultException, typeof(KeyShouldBeImmutableException));
+            
+
+
+        }
+
+        #endregion
+
+        #region TestImmutableCanBeSetPositive
+        [TestMethod]
+        public void TestImmutableCanBeSetPositive()
+        {
+            Exception resultException = null;
+
+            //Arrange
+            try
+            {
+                //Test
+                IndexedDictionary<int, ImmutableKeyCorrect> dictionary = new IndexedDictionary<int, ImmutableKeyCorrect>();
+            }
+            catch (Exception ex)
+            {
+                resultException = ex;
+            }
+
+            //assert
+            Assert.IsNull(resultException);
+
+
+
+        }
+
+        #endregion
+        #region TestImmutableIndexCanBeSetNegative
+        [TestMethod]
+        public void TestImmutableIndexCanBeSetNegative()
+        {
+            Exception resultException = null;
+
+            //Arrange
+            try
+            {
+                //Test
+                IndexedDictionary<int, ImmutableIndexWrong> dictionary = new IndexedDictionary<int, ImmutableIndexWrong>();
+            }
+            catch (Exception ex)
+            {
+                resultException = ex;
+            }
+
+            //assert
+            Assert.IsInstanceOfType(resultException, typeof(IndexShouldBeImmutableException));
+
+
+
+        }
+
+        #endregion
+
+        #region TestImmutableIndexCanBeSetPositive
+        [TestMethod]
+        public void TestImmutableIndexCanBeSetPositive()
+        {
+            Exception resultException = null;
+
+            //Arrange
+            try
+            {
+                //Test
+                IndexedDictionary<int, ImmutableKeyCorrect> dictionary = new IndexedDictionary<int, ImmutableKeyCorrect>();
+            }
+            catch (Exception ex)
+            {
+                resultException = ex;
+            }
+
+            //assert
+            Assert.IsNull(resultException);
+
+
+
+        }
+
+        #endregion
+
         #region TestKeyAttributeExists
 
         [TestMethod]
@@ -91,7 +194,6 @@ namespace IndexDictionaryUnitTests
             HasKey hasKey2 = new HasKey() { Id = 2, Name = "Jason", LastName = "Lolik"};
             HasKey hasKey3 = new HasKey() { Id = 3, Name = "John" ,LastName = "Tolik"};
             HasKey hasKey4 = new HasKey() { Id = 4, Name = "John", LastName = "Alkogolik" };
-
             IndexedDictionary<int,HasKey> dictionary = new IndexedDictionary<int,HasKey>();
             dictionary.Add(hasKey1);
             dictionary.Add(hasKey2);

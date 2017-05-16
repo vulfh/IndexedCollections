@@ -13,13 +13,16 @@ namespace IndexedCollections.Attributes
 
         public bool Unique { get; private set; }
 
+        public bool Immutable { get; private set; }
+
         #endregion
 
         #region Constructors
 
-        public IndexAttribute(bool unique)
+        public IndexAttribute(bool unique,bool immutable = false)
         {
             Unique = unique;
+            Immutable = immutable;
         }
 
         public IndexAttribute() : this(false)

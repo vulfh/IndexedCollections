@@ -317,7 +317,7 @@ namespace IndexedCollections.DataStructures
             PropertyInfo[] properties = _typeOfItem.GetProperties();
             foreach (PropertyInfo property in properties)
             {
-                Tuple<bool, bool> isIdexedProperty = IsIndexProperty(property);
+                Tuple<bool, bool,bool> isIdexedProperty = IsIndexProperty(property);
                 if (isIdexedProperty.Item1)
                 {
                     indexedProperties.Add(property);
@@ -328,19 +328,27 @@ namespace IndexedCollections.DataStructures
         #endregion
 
         #region IsIndexProperty
-        private Tuple<bool,bool> IsIndexProperty(PropertyInfo property)
+        private Tuple<bool,bool,bool> IsIndexProperty(PropertyInfo property)
         {
             Attribute[] attributes = Attribute.GetCustomAttributes(property, typeof(IndexAttribute));
+            bool isIndexProperty = false;
+            bool isUniqueIndex = false;
+            bool isImmutable = false;
             if (attributes != null && attributes.Length > 0)
             {
+                isIndexProperty = true;
                 if ((attributes[0] as IndexAttribute).Unique)
-                    return new Tuple<bool, bool>(true, true);
-                else
-                    return new Tuple<bool, bool>(true, false);
-            }
-            else
-                return new Tuple<bool, bool>(false, false);
+                    isUniqueIndex = true;
+                if ((attributes[0] as IndexAttribute).Immutable)
+                {
+                    isImmutable = true;
+                    if (property.CanWrite)
+                        throw new Exceptions.IndexShouldBeImmutableException("PropertyName:" + property.Name);
+                }
 
+
+            }
+            return new Tuple<bool, bool, bool>(isIndexProperty, isUniqueIndex, isImmutable);
         }
 
        

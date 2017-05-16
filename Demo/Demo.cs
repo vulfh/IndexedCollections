@@ -37,10 +37,7 @@ namespace Demo
         }
         private Person BuildPerson(int id,string firstName,string lastName)
         {
-            Person person = new Person();
-            person.Id = id;
-            person.FirstName = firstName;
-            person.LastName = lastName;
+            Person person = new Person(id,firstName,lastName);
             return person;
         }
         private void Demo_Load(object sender, EventArgs e)
@@ -52,7 +49,7 @@ namespace Demo
         {
             if (idToAdd != 0)
             {
-                Person newPerson = new Person() { Id = idToAdd, FirstName = txtAddFirstName.Text, LastName = txtAddLastName.Text };
+                Person newPerson = new Person(idToAdd,  txtAddFirstName.Text,txtAddLastName.Text );
                 try
                 {
                     people.Add(newPerson);
@@ -73,7 +70,7 @@ namespace Demo
 
         private void btnFetch_Click(object sender, EventArgs e)
         {
-            Person template = new Person() { Id = idToFind };
+            Person template = new Person(idToFind);
             LogicOperator lOperator = LogicOperator.OR;
             if (!string.IsNullOrWhiteSpace(txtFetchFirstName.Text))
             {

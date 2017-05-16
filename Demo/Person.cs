@@ -9,8 +9,8 @@ namespace Demo
 {
     internal class Person
     {
-        [Key]
-        public int Id { get; set; }
+        [Key(Immutable =true)]
+        public int Id { get; private set; }
 
         [Index]
         public string LastName { get; set; }
@@ -22,5 +22,18 @@ namespace Demo
         {
             return string.Format("{0} - {1},{2}", Id, LastName, FirstName);
         }
+
+        public Person(int id,string firstName,string lastName)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
+        public Person(int id)
+        {
+            Id = id;
+        }
+
     }
 }

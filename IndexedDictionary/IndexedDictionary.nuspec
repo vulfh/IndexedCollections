@@ -2,15 +2,16 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>$version$</version>
+    <version>0.2</version>
     <title>IndexedCollections</title>
     <authors>Vulf Lahman</authors>
     <owners>Vulf Lahman</owners>
     <licenseUrl>http://www.gnu.org/licenses/licenses.html</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <projectUrl>https://github.com/vulfh/IndexedCollections</projectUrl>
+   
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>Indexed dictionary is the first collection object in the indexed collections family.
+The ordinary dictionary or hashtable usually satisfy software developer needs, but sometimes there is a need to find stored item not only by keys, but by some additional property as well. It is just like in database where we have a key by row and we index certain fields.  </description>
     <releaseNotes>Release Candidate</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>Indexed Collections Dictionary</tags>

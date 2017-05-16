@@ -12,5 +12,7 @@ namespace IndexedCollections.Exceptions
         public  const string DuplicateKeyExceptionMessage = "The key already exists in dictionary.";
         public const string IndexedPropertyIsNull = "The indexed property {0} cannot be null.";
         public const string DuplicateUniqueIndexExceptionMessage = "The unique index already exist !";
+        public const string KeyIsNotImmutable = "The key property is not immutable, but it decorated so. Consider make set accessor either private or proteced, otherwise decorate it with immutable false attribute.";
+        public const string IndexIsNotImmutable = "The index property is not immutable, but it decorated so. Consider make set accessor either private or proteced, otherwise decorate it with immutable false attribute.";
     }
 }

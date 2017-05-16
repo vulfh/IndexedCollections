@@ -11,6 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using IndexedCollections.Definitions;
 
+//TODO: Add events on item added, removed
+//TODO: Thread safety version
+//TODO: in thread safety version make an analogue of js "every"  which guaranty lock on the collection
+//TODO: Ensure Immutabolity
+
 namespace IndexedCollections
 {
     public class IndexedDictionary<K,T> : IEnumerator<T>,IEnumerable<T> where T:class
@@ -286,7 +291,7 @@ namespace IndexedCollections
 
         #region Private Methods
 
-        #region TestComtains
+        #region TestContains
 
         private bool TestContains(int keyHashCode)
         {
@@ -377,14 +382,23 @@ namespace IndexedCollections
            _indexes = new IndexRepository<T>();
         }
 
-        
-        private bool IsKeyProperty(PropertyInfo property)
+        //Retrieves Tuple<bool,bool> first value is key, second is immutable
+        private Tuple<bool,bool> IsKeyProperty(PropertyInfo property)
         {
             Attribute[] attributes = Attribute.GetCustomAttributes(property,typeof(KeyAttribute));
             if (attributes != null && attributes.Length > 0)
-                return true;
+            {
+                if((attributes[0] as KeyAttribute).Immutable)
+                {
+                    return new Tuple<bool, bool>(true, true);
+                }
+                else
+                {
+                    return new Tuple<bool, bool>(true, false);
+                }
+            }
             else
-                return false;
+                return new  Tuple<bool, bool>(false,false);
 
         }
 
@@ -393,13 +407,31 @@ namespace IndexedCollections
         private PropertyInfo GetKeyProperty()
         {
             PropertyInfo[] properties = _typeOfItem.GetProperties();
+            PropertyInfo keyProperty = null;
             foreach (PropertyInfo property in properties)
             {
-                if (IsKeyProperty(property))
-                    return property;
+                Tuple<bool, bool> keyPropertyInfo = IsKeyProperty(property);
+                if (keyPropertyInfo.Item1)
+                {
+                    if (keyPropertyInfo.Item2)//Is immutable
+                    {
+                        if (property.GetSetMethod(false) == null)
+                            keyProperty = property;
+                        else
+                            throw new KeyShouldBeImmutableException();
+                    }
+                    else
+                    {
+                        keyProperty = property;
+                    }
+                }
 
             }
-            throw new NoKeyPropertyException();
+            
+            if (keyProperty != null)
+                return keyProperty;
+            else
+                throw new NoKeyPropertyException();
         }
        
         private int GetHashCodeOfProperty(PropertyInfo property,T item)

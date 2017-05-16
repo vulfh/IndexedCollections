@@ -51,6 +51,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="SampleObjects\HasKey.cs" />
+    <Compile Include="SampleObjects\ImmutableIndexCorrect.cs" />
+    <Compile Include="SampleObjects\ImmutableIndexWrong.cs" />
+    <Compile Include="SampleObjects\ImmutableKeyCorrect.cs" />
+    <Compile Include="SampleObjects\ImmutableKeyWrong.cs" />
     <Compile Include="SampleObjects\NoKey.cs" />
     <Compile Include="SampleObjects\HasKeyUniqueIndex.cs" />
     <Compile Include="TestDictionary.cs" />
